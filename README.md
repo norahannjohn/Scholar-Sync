@@ -121,7 +121,7 @@ This repository includes a complete [`render.yaml`](./render.yaml) Blueprint con
 | `DATABASE_URL` | Yes | Connected automatically from `scholarsync-db` |
 | `FRONTEND_ORIGIN` | Recommended | Your Render URL, e.g. `https://scholarsync.onrender.com` |
 | `GEMINI_API_KEY` | Optional (add later) | Enables conversational Gemini AI assistant (`google-genai`). App works deterministically without it. |
-| `GEMINI_MODEL` | Optional | Defaults to `gemini-2.5-flash` |
+| `GEMINI_MODEL` | Optional | Defaults to `gemini-3.8-flash` |
 | `ADMIN_EMAIL` & `ADMIN_INITIAL_PASSWORD` | Optional | Bootstraps the first admin user on startup if no admin exists yet (alternatively run `python -m app.cli create-admin` in Render Shell). |
 
 ---
