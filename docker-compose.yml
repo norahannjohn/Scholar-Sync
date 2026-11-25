@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: scholarsync_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: scholarsync
+    ports:
+      - "5432:5432"
+    volumes:
+      - scholarsync_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d scholarsync"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  scholarsync_pgdata:
