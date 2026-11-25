@@ -72,9 +72,13 @@ def create_app() -> FastAPI:
         return {"status": "ok"}
 
     # Single-service Render deployment: serve built React SPA if frontend/dist exists
-    repo_root = Path(__file__).resolve().parents[3]
+    repo_root = Path(__file__).resolve().parents[2]
     dist_dir = repo_root / "frontend" / "dist"
-    if dist_dir.is_dir():
+    if not dist_dir.is_dir():
+        alt_dist = Path.cwd().parent / "frontend" / "dist"
+        if alt_dist.is_dir():
+            dist_dir = alt_dist
+    if dist_dir.is_dir() and (dist_dir / "index.html").is_file():
         assets_dir = dist_dir / "assets"
         if assets_dir.is_dir():
             app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
